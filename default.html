@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publisher Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Syne:wght@400;700;800&family=Syne+Mono&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f5f3ee;
+  --bg2: #eceae3;
+  --ink: #1a1814;
+  --ink2: #5a5750;
+  --ink3: #a09c95;
+  --line: rgba(26,24,20,0.1);
+  --line2: rgba(26,24,20,0.2);
+  --pop: #d4531e;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  cursor: none;
+}
+
+.cursor-dot {
+  width: 6px; height: 6px;
+  background: var(--pop);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  width: 32px; height: 32px;
+  border: 1px solid var(--pop);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  opacity: 0.45;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 3rem;
+  background: rgba(245,243,238,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+.nav-logo span { color: var(--pop); }
+
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink2);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--pop); }
+
+/* HEADER */
+.site-header {
+  padding: 9rem 3rem 5rem;
+  border-bottom: 1px solid var(--line2);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: end;
+}
+
+.header-label {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  color: var(--pop);
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+}
+
+.header-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.header-title span { display: block; color: var(--pop); }
+
+.header-right { display: flex; flex-direction: column; gap: 2rem; padding-bottom: 0.5rem; }
+
+.header-desc {
+  font-size: 0.88rem;
+  color: var(--ink2);
+  line-height: 1.85;
+  max-width: 380px;
+}
+
+.header-stats { display: flex; gap: 2.5rem; }
+
+.hstat { border-left: 2px solid var(--pop); padding-left: 1rem; }
+.hstat-n {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--ink);
+}
+.hstat-l {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-top: 0.25rem;
+}
+
+/* SECTION */
+.section-wrap { padding: 5rem 3rem; }
+.section-wrap + .section-wrap { border-top: 1px solid var(--line2); }
+
+.section-label { display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem; }
+.section-num { font-family: 'Syne Mono', monospace; font-size: 0.68rem; color: var(--pop); letter-spacing: 0.12em; }
+.section-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.6rem; letter-spacing: -0.01em; color: var(--ink); }
+
+/* SKILLS */
+.skills-block {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line2);
+  border: 1px solid var(--line2);
+}
+
+.skill-group { background: var(--bg); padding: 2rem; }
+
+.skill-group-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pop);
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.skill-items { display: flex; flex-direction: column; gap: 0.7rem; }
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--ink2);
+}
+
+.skill-bar-wrap { width: 72px; height: 2px; background: var(--line2); border-radius: 2px; overflow: hidden; flex-shrink: 0; }
+.skill-bar { height: 100%; background: var(--pop); border-radius: 2px; width: 0%; transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1rem; }
+.skill-tag {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  padding: 0.28rem 0.65rem;
+  border: 1px solid var(--line2);
+  color: var(--ink2);
+  background: var(--bg2);
+  border-radius: 2px;
+}
+
+/* PROJECTS */
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--line2);
+  border: 1px solid var(--line2);
+}
+
+.project-row {
+  background: var(--bg);
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 200px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s;
+  overflow: hidden;
+}
+.project-row:hover { background: var(--bg2); }
+
+.project-thumb { overflow: hidden; position: relative; background: var(--bg2); }
+.project-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.55s cubic-bezier(0.22,1,0.36,1), filter 0.4s;
+  filter: grayscale(20%);
+}
+.project-row:hover .project-thumb img { transform: scale(1.06); filter: grayscale(0%); }
+
+.thumb-fallback {
+  width: 100%; height: 100%; min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--ink3);
+  text-align: center;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+}
+
+.project-body {
+  padding: 1.8rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.6rem; }
+.project-type {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--pop);
+}
+.project-year { font-size: 0.68rem; color: var(--ink3); }
+
+.project-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+.project-client { font-size: 0.75rem; color: var(--ink3); margin-bottom: 0.7rem; }
+.project-desc { font-size: 0.82rem; color: var(--ink2); line-height: 1.75; max-width: 520px; }
+
+.project-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.project-tech-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.project-tech {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+  padding: 0.22rem 0.55rem;
+  border: 1px solid var(--line2);
+  color: var(--ink3);
+  border-radius: 2px;
+}
+
+.project-link-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pop);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.22s, transform 0.22s;
+}
+.project-row:hover .project-link-btn { opacity: 1; transform: translateX(0); }
+.project-link-btn svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--line2);
+  padding: 2rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+footer p { font-family: 'Syne Mono', monospace; font-size: 0.68rem; color: var(--ink3); letter-spacing: 0.06em; }
+
+@media (max-width: 860px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .site-header { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 2rem; }
+  .section-wrap { padding: 3.5rem 1.5rem; }
+  .skills-block { grid-template-columns: 1fr; }
+  .project-row { grid-template-columns: 1fr; }
+  .project-thumb { height: 180px; }
+  .project-body { padding: 1.4rem 1.5rem; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cd"></div>
+<div class="cursor-ring" id="cr"></div>
+
+<nav>
+  <div class="nav-logo">WEB <span>PUBLISHER</span></div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+  </ul>
+</nav>
+
+<header class="site-header reveal">
+  <div>
+    <p class="header-label">Web Publisher · Career Portfolio</p>
+    <h1 class="header-title">
+      Web
+      <span>Publisher</span>
+      Portfolio
+    </h1>
+  </div>
+  <div class="header-right">
+    <p class="header-desc">
+      교육 플랫폼 랜딩 페이지부터 연구기관 공식 웹사이트까지,
+      다양한 도메인의 웹 퍼블리싱 경험을 보유하고 있습니다.
+      반응형 구현, 크로스브라우징, 웹 접근성을 중심으로 작업합니다.
+    </p>
+    <div class="header-stats">
+      <div class="hstat">
+        <div class="hstat-n">8+</div>
+        <div class="hstat-l">Projects</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-n">3+</div>
+        <div class="hstat-l">Years Exp.</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-n">2</div>
+        <div class="hstat-l">Domains</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ───── SKILLS ───── -->
+<section class="section-wrap" id="skills">
+  <div class="section-label reveal">
+    <span class="section-num">01 —</span>
+    <h2 class="section-title">Skills</h2>
+  </div>
+
+  <div class="skills-block reveal">
+
+    <div class="skill-group">
+      <p class="skill-group-title">Markup &amp; Style</p>
+      <div class="skill-items">
+        <div class="skill-item">
+          <span>HTML5 · 시맨틱 마크업</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-w="95"></div></div>
+        </div>
+        <div class="skill-item">
+          <span>CSS3 · SCSS</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-w="92"></div></div>
+        </div>
+        <div class="skill-item">
+          <span>반응형 · Mobile First</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-w="93"></div></div>
+        </div>
+        <div class="skill-item">
+          <span>웹 접근성 · WCAG</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-w="80"></div></div>
+        </div>
+        <div class="skill-item">
+          <span>크로스브라우징</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-w="88"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <p class="skill-group-title">Interaction &amp; Script</p>
+      <div class="skill-items">
+        <div class="skill-item">
+          <span>JavaScript (ES6+)</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-w="78"></div></div>
+        </div>
+        <div class="skill-item">
+          <span>jQuery</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-w="90"></div></div>
+        </div>
+        <div class="skill-item">
+          <span>CSS Animation</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-w="85"></div></div>
+        </div>
+        <div class="skill-item">
+          <span>Swiper · Slick</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-w="90"></div></div>
+        </div>
+        <div class="skill-item">
+          <span>Vue.js · Nuxt</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-w="65"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <p class="skill-group-title">Tools &amp; Workflow</p>
+      <div class="skill-items">
+        <div class="skill-item">
+          <span>Figma</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-w="85"></div></div>
+        </div>
+        <div class="skill-item">
+          <span>Git · GitHub</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-w="75"></div></div>
+        </div>
+        <div class="skill-item">
+          <span>Photoshop · Illustrator</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-w="70"></div></div>
+        </div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">npm</span>
+        <span class="skill-tag">Webpack</span>
+        <span class="skill-tag">Gulp</span>
+        <span class="skill-tag">Notion</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ───── PROJECTS ───── -->
+<section class="section-wrap" id="projects">
+  <div class="section-label reveal">
+    <span class="section-num">02 —</span>
+    <h2 class="section-title">Projects</h2>
+  </div>
+
+  <div class="projects-list">
+
+    <!-- 1. INID-K -->
+    <a class="project-row reveal" href="https://inid-k.org/" target="_blank" rel="noopener">
+      <div class="project-thumb">
+        <!-- 세계지도 네트워크 이미지 (메인 핵심 비주얼) -->
+        <img src="https://inid-k.org/static/_nuxt/img/map4.bcd3efb.png"
+             alt="INID-K 사이트 대표 이미지"
+             style="object-fit: contain; background: #0d1f3c; padding: 1.5rem;"
+             onerror="this.parentElement.innerHTML='<div class=\'thumb-fallback\' style=\'background:#0d1f3c;color:#3a6ea8;\'>INID-K</div>'">
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-meta">
+            <span class="project-type">기관 공식 웹사이트</span>
+            <span class="project-year">2022 – 2023</span>
+          </div>
+          <p class="project-name">INID-K 국제감염병 임상자원 네트워크</p>
+          <p class="project-client">서울대학교병원 감염병연구소</p>
+          <p class="project-desc">국제감염병 임상자원 네트워크 공식 홈페이지. Vue.js(Nuxt) 기반 SPA 구조로 국내외 협력 네트워크 인터랙티브 지도, 임상자원 현황 대시보드, 다국어(한·영) 지원을 구현. 연구기관 특성에 맞는 정보 아키텍처 설계 및 반응형 퍼블리싱 담당.</p>
+        </div>
+        <div class="project-footer">
+          <div class="project-tech-list">
+            <span class="project-tech">Vue.js</span>
+            <span class="project-tech">Nuxt</span>
+            <span class="project-tech">SCSS</span>
+            <span class="project-tech">반응형</span>
+            <span class="project-tech">다국어</span>
+            <span class="project-tech">웹 접근성</span>
+          </div>
+          <div class="project-link-btn">View Live <svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+        </div>
+      </div>
+    </a>
+
+    <!-- 2. C3BIRD -->
+    <a class="project-row reveal" href="http://www.c3bird.org/" target="_blank" rel="noopener">
+      <!-- <div class="project-thumb">
+        <div class="thumb-fallback" style="background:#e8f0e8; color:#4a7a4a; flex-direction:column; gap:0.5rem;">
+          <span style="font-size:2rem;">C³BIRD</span>
+          <span style="font-size:0.7rem; letter-spacing:0.1em; font-family:'Syne Mono',monospace; color:#7aaa7a;">감염병 국제 공동연구</span>
+        </div>
+      </div> -->
+			<div class="project-thumb">
+        <!-- 세계지도 네트워크 이미지 (메인 핵심 비주얼) -->
+        <img src="http://www.c3bird.org/resources/images/sub/intro_c3bird.jpg"
+             alt="C³BIRD 사이트 대표 이미지"
+             style="object-fit: contain; background: #0d1f3c; padding: 1.5rem;"
+             onerror="this.parentElement.innerHTML='<div class=\'thumb-fallback\' style=\'background:#0d1f3c;color:#3a6ea8;\'>C³BIRD</div>'">
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-meta">
+            <span class="project-type">기관 공식 웹사이트</span>
+            <span class="project-year">2021 – 2022</span>
+          </div>
+          <p class="project-name">C³BIRD 감염병 국제 공동연구</p>
+          <p class="project-client">서울대학교병원 · 고려대학교 · 충남대학교</p>
+          <p class="project-desc">감염병 분야 국제 공동연구 네트워크 공식 홈페이지. 3개 기관 컨소시엄 및 태국·베트남·라오스·말레이시아 해외 협력기관 소개, 연구 로드맵, 인력양성 프로그램 등 다양한 콘텐츠를 구조적으로 편성한 정적 사이트 퍼블리싱 담당.</p>
+        </div>
+        <div class="project-footer">
+          <div class="project-tech-list">
+            <span class="project-tech">HTML5</span>
+            <span class="project-tech">CSS3</span>
+            <span class="project-tech">jQuery</span>
+            <span class="project-tech">반응형</span>
+            <span class="project-tech">크로스브라우징</span>
+          </div>
+          <div class="project-link-btn">View Live <svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+        </div>
+      </div>
+    </a>
+
+    <!-- 3. 2024 모의고사 -->
+    <a class="project-row reveal" href="https://www.ssamplus.com/mocktest/2024_exam/index_tab0.asp" target="_blank" rel="noopener">
+      <div class="project-thumb">
+        <!-- 모의고사 페이지 상단 히소 이미지 (실제 페이지 메인 비주얼) -->
+        <img src="https://www.ssamplus.com/mocktest/2024_exam/images/img_cnt_01.jpg"
+             alt="2024 모의고사 페이지 대표 이미지"
+             onerror="this.src='https://www.ssamplus.com/mocktest/2024_exam/images/img_heeso_01.jpg'">
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-meta">
+            <span class="project-type">이벤트 랜딩 페이지</span>
+            <span class="project-year">2024</span>
+          </div>
+          <p class="project-name">2024 임용고사 모의고사 신청 페이지</p>
+          <p class="project-client">KG에듀원 쌤플러스</p>
+          <p class="project-desc">임용고시 전문 교육기관의 모의고사 신청 랜딩 페이지. 탭 내비게이션 기반 정보 구조, 과목별 안내, 수험생 합격 후기 섹션을 포함한 풀사이즈 이벤트 페이지 기획 및 퍼블리싱 담당.</p>
+        </div>
+        <div class="project-footer">
+          <div class="project-tech-list">
+            <span class="project-tech">HTML5</span>
+            <span class="project-tech">CSS3</span>
+            <span class="project-tech">jQuery</span>
+            <span class="project-tech">탭 UI</span>
+            <span class="project-tech">반응형</span>
+          </div>
+          <div class="project-link-btn">View Live <svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+        </div>
+      </div>
+    </a>
+
+    <!-- 4. HIT 2025 -->
+    <a class="project-row reveal" href="https://www.ssamplus.com/inc/fullsize/hit2025/" target="_blank" rel="noopener">
+      <div class="project-thumb">
+        <!-- HIT2025 하단 섹션 이미지 (실제 콘텐츠 대표 이미지) -->
+        <img src="https://www.ssamplus.com/inc/fullsize/hit2025/images/img_cnt_03.jpg"
+             alt="HIT 2025 합격자 스토리 대표 이미지"
+             onerror="this.src='https://www.ssamplus.com/inc/fullsize/hit2025/images/img_cnt_02.jpg'">
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-meta">
+            <span class="project-type">합격자 스토리 페이지</span>
+            <span class="project-year">2025</span>
+          </div>
+          <p class="project-name">2025 HIT 합격자 수기 아카이브</p>
+          <p class="project-client">KG에듀원 쌤플러스</p>
+          <p class="project-desc">2025년 임용시험 합격자들의 생생한 후기와 과목별 합격 사례를 담은 아카이브 페이지. 무한 슬라이드 방식의 후기 카드 UI, 과목별 합격자 리스트, 상세 인터뷰 링크 구조를 구현.</p>
+        </div>
+        <div class="project-footer">
+          <div class="project-tech-list">
+            <span class="project-tech">HTML5</span>
+            <span class="project-tech">CSS Animation</span>
+            <span class="project-tech">Swiper.js</span>
+            <span class="project-tech">반응형</span>
+          </div>
+          <div class="project-link-btn">View Live <svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+        </div>
+      </div>
+    </a>
+
+    <!-- 5. 쌤팩 2025 -->
+    <a class="project-row reveal" href="https://www.ssamplus.com/inc/fullsize/ssampack2025/" target="_blank" rel="noopener">
+      <div class="project-thumb">
+        <!-- 쌤팩 2025 실제 상단 메인 이미지 -->
+        <img src="https://www.ssamplus.com/inc/fullsize/ssampack2025/images/img_cnt_0100.png"
+             alt="쌤팩 2025 패키지 프로모션 대표 이미지"
+             style="object-fit: contain; background: #12122a; padding: 1rem;"
+             onerror="this.src='https://www.ssamplus.com/inc/fullsize/ssampack2025/images/img_cnt_01.jpg'">
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-meta">
+            <span class="project-type">패키지 프로모션 페이지</span>
+            <span class="project-year">2025</span>
+          </div>
+          <p class="project-name">쌤팩 2025 연간 패키지 프로모션</p>
+          <p class="project-client">KG에듀원 쌤플러스</p>
+          <p class="project-desc">연간 강의 패키지 상품을 소개하는 풀사이즈 프로모션 랜딩 페이지. 과목별 패키지 구성표, 강사 소개, 수강 혜택, 실시간 수강신청 폼까지 모바일 전환율을 고려한 CTA 배치 중심으로 구현.</p>
+        </div>
+        <div class="project-footer">
+          <div class="project-tech-list">
+            <span class="project-tech">HTML5</span>
+            <span class="project-tech">CSS3</span>
+            <span class="project-tech">JavaScript</span>
+            <span class="project-tech">반응형</span>
+          </div>
+          <div class="project-link-btn">View Live <svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+        </div>
+      </div>
+    </a>
+
+    <!-- 6. 2025 합격 수기 & 인터뷰 -->
+    <a class="project-row reveal" href="https://www.ssamplus.com/inc/fullsize/2025_pass/" target="_blank" rel="noopener">
+      <div class="project-thumb">
+        <!-- 모의고사 실제 강사 사진 이미지 -->
+        <img src="https://www.ssamplus.com/mocktest/2024_exam/images/img_heeso_02.jpg"
+             alt="2025 합격 수기 인터뷰 대표 이미지" onerror="this.src='https://www.ssamplus.com/mocktest/2024_exam/images/img_heeso_05.jpg'">
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-meta">
+            <span class="project-type">인터뷰 스토리 페이지</span>
+            <span class="project-year">2025</span>
+          </div>
+          <p class="project-name">2025 합격 수기 &amp; 인터뷰</p>
+          <p class="project-client">KG에듀원 쌤플러스</p>
+          <p class="project-desc">합격생 인터뷰 영상과 합격 수기를 담은 스토리 페이지. 영상 임베드, 과목별 합격 루트 인포그래픽, 후기 카드 레이아웃 구성 및 스크롤 기반 등장 애니메이션 적용.</p>
+        </div>
+        <div class="project-footer">
+          <div class="project-tech-list">
+            <span class="project-tech">HTML5</span>
+            <span class="project-tech">CSS Animation</span>
+            <span class="project-tech">ScrollTrigger</span>
+            <span class="project-tech">반응형</span>
+          </div>
+          <div class="project-link-btn">View Live <svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+        </div>
+      </div>
+    </a>
+
+    <!-- 7. 이벤트 A -->
+    <a class="project-row reveal" href="https://www.ssamplus.com/inc/fullsize/2024/176269/" target="_blank" rel="noopener">
+      <div class="project-thumb">
+        <img src="https://www.ssamplus.com/mocktest/2024_exam/images/img_heeso_03.jpg"
+             alt="2024 이벤트 A 대표 이미지"
+             onerror="this.parentElement.innerHTML='<div class=\'thumb-fallback\' style=\'background:#1e1e2e;color:#555\'>Event<br>2024</div>'">
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-meta">
+            <span class="project-type">이벤트 프로모션 페이지</span>
+            <span class="project-year">2024</span>
+          </div>
+          <p class="project-name">2024 특별 프로모션 이벤트 A</p>
+          <p class="project-client">KG에듀원 쌤플러스</p>
+          <p class="project-desc">단기 할인 이벤트를 위한 풀사이즈 프로모션 랜딩 페이지. 주목도 높은 비주얼 배너와 명확한 CTA 구조를 중심으로 설계 및 퍼블리싱.</p>
+        </div>
+        <div class="project-footer">
+          <div class="project-tech-list">
+            <span class="project-tech">HTML5</span>
+            <span class="project-tech">CSS3</span>
+            <span class="project-tech">jQuery</span>
+            <span class="project-tech">반응형</span>
+          </div>
+          <div class="project-link-btn">View Live <svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+        </div>
+      </div>
+    </a>
+
+    <!-- 8. 이벤트 B -->
+    <a class="project-row reveal" href="https://www.ssamplus.com/inc/fullsize/2024/175865/" target="_blank" rel="noopener">
+      <div class="project-thumb">
+        <img src="https://www.ssamplus.com/inc/fullsize/2024/175865/images/img_cnt_02_v2.jpg"
+             alt="2024 이벤트 B 대표 이미지"
+             onerror="this.parentElement.innerHTML='<div class=\'thumb-fallback\' style=\'background:#1e1e2e;color:#555\'>Event<br>2024</div>'">
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-meta">
+            <span class="project-type">이벤트 프로모션 페이지</span>
+            <span class="project-year">2024</span>
+          </div>
+          <p class="project-name">2024 특별 프로모션 이벤트 B</p>
+          <p class="project-client">KG에듀원 쌤플러스</p>
+          <p class="project-desc">특별 할인 이벤트 랜딩 페이지. 강조 배너, 혜택 리스트, 수강 신청 유도 섹션으로 구성된 단일 스크롤 페이지 퍼블리싱.</p>
+        </div>
+        <div class="project-footer">
+          <div class="project-tech-list">
+            <span class="project-tech">HTML5</span>
+            <span class="project-tech">CSS3</span>
+            <span class="project-tech">jQuery</span>
+            <span class="project-tech">반응형</span>
+          </div>
+          <div class="project-link-btn">View Live <svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<footer>
+  <p>WEB PUBLISHER PORTFOLIO</p>
+  <p>© 2025 · ALL RIGHTS RESERVED</p>
+</footer>
+
+<script>
+const cd = document.getElementById('cd');
+const cr = document.getElementById('cr');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cd.style.left = mx + 'px';
+  cd.style.top = my + 'px';
+});
+
+(function loop() {
+  rx += (mx - rx) * 0.13;
+  ry += (my - ry) * 0.13;
+  cr.style.left = rx + 'px';
+  cr.style.top = ry + 'px';
+  requestAnimationFrame(loop);
+})();
+
+// Skill bars
+const bars = document.querySelectorAll('.skill-bar');
+const barObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.width = e.target.dataset.w + '%';
+      barObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+bars.forEach(b => barObs.observe(b));
+
+// Reveal
+const reveals = document.querySelectorAll('.reveal');
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 55);
+      revObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.07 });
+reveals.forEach(r => revObs.observe(r));
+</script>
+</body>
+</html>
