@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio · Web Publisher & Planner</title>
+<title>Think & Build · Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Syne:wght@400;700;800&family=Syne+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -31,7 +31,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   line-height: 1.7;
   cursor: none;
@@ -65,7 +65,7 @@ nav {
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
 }
-.nav-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:.95rem; letter-spacing:.06em; }
+.nav-logo { font-family:'Roboto',sans-serif; font-weight:800; font-size:.95rem; letter-spacing:.06em; }
 .nav-logo .dot { color:var(--pop); }
 .nav-links { display:flex; gap:2rem; list-style:none; }
 .nav-links a { font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink2); text-decoration:none; transition:color .2s; }
@@ -77,7 +77,7 @@ nav {
   border-bottom: 1px solid var(--line2);
   display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end;
 }
-.header-label { font-family:'Syne Mono',monospace; font-size:.7rem; letter-spacing:.22em; color:var(--pop); margin-bottom:1.2rem; text-transform:uppercase; }
+.header-label { font-family:'Roboto Mono',monospace; font-size:.7rem; letter-spacing:.22em; color:var(--pop); margin-bottom:1.2rem; text-transform:uppercase; }
 .header-title { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(2.8rem,5.5vw,5.5rem); line-height:1; letter-spacing:-.02em; }
 .header-title .accent { color:var(--pop); display:block; }
 .header-title .accent2 { color:var(--plan); display:block; }
@@ -85,7 +85,7 @@ nav {
 .header-stats { display:flex; gap:2rem; }
 .hstat { border-left:2px solid var(--pop); padding-left:1rem; }
 .hstat.blue { border-color:var(--plan); }
-.hstat-n { font-family:'Syne',sans-serif; font-weight:700; font-size:1.8rem; line-height:1; }
+.hstat-n { font-family:'Roboto',sans-serif; font-weight:700; font-size:1.8rem; line-height:1; }
 .hstat.blue .hstat-n { color:var(--plan); }
 .hstat:not(.blue) .hstat-n { color:var(--pop); }
 .hstat-l { font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-top:.25rem; }
@@ -93,7 +93,7 @@ nav {
 /* ROLE BADGES */
 .role-badges { display:flex; gap:.75rem; margin-top:1.5rem; flex-wrap:wrap; }
 .badge {
-  font-family:'Syne',sans-serif; font-weight:700;
+  font-family:'Roboto',sans-serif; font-weight:700;
   font-size:.68rem; letter-spacing:.1em; text-transform:uppercase;
   padding:.4rem 1rem; border-radius:2px;
   display:flex; align-items:center; gap:.4rem;
@@ -106,33 +106,33 @@ nav {
 .section-wrap { padding:5rem 3rem; }
 .section-wrap + .section-wrap { border-top:1px solid var(--line2); }
 .section-label { display:flex; align-items:center; gap:1rem; margin-bottom:3rem; }
-.section-num { font-family:'Syne Mono',monospace; font-size:.68rem; letter-spacing:.12em; }
+.section-num { font-family:'Roboto Mono',monospace; font-size:.68rem; letter-spacing:.12em; }
 .section-num.orange { color:var(--pop); }
 .section-num.blue { color:var(--plan); }
-.section-title { font-family:'Syne',sans-serif; font-weight:700; font-size:1.6rem; letter-spacing:-.01em; }
+.section-title { font-family:'Roboto',sans-serif; font-weight:700; font-size:1.6rem; letter-spacing:-.01em; }
 .section-sub { font-size:.82rem; color:var(--ink2); margin-left:auto; }
 
 /* SKILLS */
 .skills-block { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line2); border:1px solid var(--line2); }
 .skill-group { background:var(--bg); padding:2rem; }
-.skill-group-title { font-family:'Syne',sans-serif; font-weight:700; font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; color:var(--pop); margin-bottom:1.2rem; padding-bottom:.8rem; border-bottom:1px solid var(--line); }
+.skill-group-title { font-family:'Roboto',sans-serif; font-weight:700; font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; color:var(--pop); margin-bottom:1.2rem; padding-bottom:.8rem; border-bottom:1px solid var(--line); }
 .skill-items { display:flex; flex-direction:column; gap:.7rem; }
 .skill-item { display:flex; align-items:center; justify-content:space-between; font-size:.82rem; color:var(--ink2); }
 .skill-bar-wrap { width:72px; height:2px; background:var(--line2); border-radius:2px; overflow:hidden; flex-shrink:0; }
 .skill-bar { height:100%; background:var(--pop); border-radius:2px; width:0%; transition:width .9s cubic-bezier(.22,1,.36,1); }
 .skill-tags { display:flex; flex-wrap:wrap; gap:.45rem; margin-top:1rem; }
-.skill-tag { font-family:'Syne Mono',monospace; font-size:.65rem; padding:.28rem .65rem; border:1px solid var(--line2); color:var(--ink2); background:var(--bg2); border-radius:2px; }
+.skill-tag { font-family:'Roboto Mono',monospace; font-size:.65rem; padding:.28rem .65rem; border:1px solid var(--line2); color:var(--ink2); background:var(--bg2); border-radius:2px; }
 
 /* PLANNING CARDS GRID */
 .plan-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line2); border:1px solid var(--line2); }
 .plan-card { background:var(--bg); padding:2rem; display:flex; flex-direction:column; gap:.8rem; transition:background .2s; }
 .plan-card:hover { background:var(--plan-light); }
-.plan-card-tag { font-family:'Syne Mono',monospace; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--plan); }
-.plan-card-title { font-family:'Syne',sans-serif; font-weight:700; font-size:1rem; line-height:1.3; color:var(--ink); }
+.plan-card-tag { font-family:'Roboto Mono',monospace; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--plan); }
+.plan-card-title { font-family:'Roboto',sans-serif; font-weight:700; font-size:1rem; line-height:1.3; color:var(--ink); }
 .plan-card-client { font-size:.72rem; color:var(--ink3); }
 .plan-card-desc { font-size:.8rem; color:var(--ink2); line-height:1.7; flex:1; }
 .plan-card-footer { margin-top:.5rem; padding-top:.8rem; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; gap:.35rem; }
-.plan-tech { font-family:'Syne Mono',monospace; font-size:.6rem; padding:.2rem .5rem; border:1px solid var(--line2); color:var(--ink3); border-radius:2px; }
+.plan-tech { font-family:'Roboto Mono',monospace; font-size:.6rem; padding:.2rem .5rem; border:1px solid var(--line2); color:var(--ink3); border-radius:2px; }
 
 /* KG EDU MEGA CARD */
 .plan-card-mega { grid-column:span 3; background:var(--bg); display:grid; grid-template-columns:1fr 2fr; gap:0; transition:background .2s; }
@@ -143,7 +143,7 @@ nav {
 .mega-left .plan-card-client { margin-bottom:1rem; }
 .mega-left .plan-card-desc { font-size:.82rem; }
 .mega-right { padding:2.5rem; }
-.mega-right-title { font-family:'Syne',sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-bottom:1rem; }
+.mega-right-title { font-family:'Roboto',sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-bottom:1rem; }
 .page-chips { display:flex; flex-wrap:wrap; gap:.5rem; }
 .page-chip { background:var(--bg2); border:1px solid var(--line2); font-size:.75rem; color:var(--ink2); padding:.35rem .8rem; border-radius:2px; }
 .page-chip strong { color:var(--plan); font-weight:500; }
@@ -155,26 +155,26 @@ nav {
 .project-thumb { overflow:hidden; position:relative; background:var(--bg2); display:flex; }
 .project-thumb img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .55s cubic-bezier(.22,1,.36,1),filter .4s; filter:grayscale(20%); flex-shrink:0; }
 .project-row:hover .project-thumb img { transform:scale(1.06); filter:grayscale(0%); }
-.thumb-fallback { width:100%; height:100%; min-height:190px; display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-weight:800; font-size:1.2rem; color:var(--ink3); text-align:center; line-height:1.3; flex-shrink:0; }
+.thumb-fallback { width:100%; height:100%; min-height:190px; display:flex; align-items:center; justify-content:center; font-family:'Roboto',sans-serif; font-weight:800; font-size:1.2rem; color:var(--ink3); text-align:center; line-height:1.3; flex-shrink:0; }
 .project-body { padding:1.8rem 2.2rem; display:flex; flex-direction:column; justify-content:space-between; }
 .project-meta { display:flex; align-items:center; gap:1rem; margin-bottom:.6rem; }
-.project-type { font-family:'Syne Mono',monospace; font-size:.62rem; letter-spacing:.15em; text-transform:uppercase; color:var(--pop); }
+.project-type { font-family:'Roboto Mono',monospace; font-size:.62rem; letter-spacing:.15em; text-transform:uppercase; color:var(--pop); }
 .project-type.dev { color:var(--dev); }
 .badge-dev { background:var(--dev); color:#fff; }
 .project-year { font-size:.68rem; color:var(--ink3); }
-.project-name { font-family:'Syne',sans-serif; font-weight:700; font-size:1.1rem; letter-spacing:-.01em; color:var(--ink); margin-bottom:.3rem; }
+.project-name { font-family:'Roboto',sans-serif; font-weight:700; font-size:1.1rem; letter-spacing:-.01em; color:var(--ink); margin-bottom:.3rem; }
 .project-client { font-size:.75rem; color:var(--ink3); margin-bottom:.6rem; }
 .project-desc { font-size:.82rem; color:var(--ink2); line-height:1.75; max-width:520px; }
 .project-footer { display:flex; align-items:center; justify-content:space-between; margin-top:1.2rem; padding-top:1rem; border-top:1px solid var(--line); }
 .project-tech-list { display:flex; flex-wrap:wrap; gap:.35rem; }
-.project-tech { font-family:'Syne Mono',monospace; font-size:.6rem; padding:.2rem .55rem; border:1px solid var(--line2); color:var(--ink3); border-radius:2px; }
-.project-link-btn { display:flex; align-items:center; gap:.4rem; font-family:'Syne',sans-serif; font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--pop); white-space:nowrap; opacity:0; transform:translateX(-8px); transition:opacity .22s,transform .22s; }
+.project-tech { font-family:'Roboto Mono',monospace; font-size:.6rem; padding:.2rem .55rem; border:1px solid var(--line2); color:var(--ink3); border-radius:2px; }
+.project-link-btn { display:flex; align-items:center; gap:.4rem; font-family:'Roboto',sans-serif; font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--pop); white-space:nowrap; opacity:0; transform:translateX(-8px); transition:opacity .22s,transform .22s; }
 .project-row:hover .project-link-btn { opacity:1; transform:translateX(0); }
 .project-link-btn svg { width:13px; height:13px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
 
 /* SECTION DIVIDER WITH LABEL */
 .role-divider { display:flex; align-items:center; gap:1.5rem; padding:2.5rem 3rem; border-top:1px solid var(--line2); border-bottom:1px solid var(--line2); background:var(--bg2); }
-.role-divider-badge { font-family:'Syne',sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; padding:.5rem 1.2rem; border-radius:2px; }
+.role-divider-badge { font-family:'Roboto',sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; padding:.5rem 1.2rem; border-radius:2px; }
 .role-divider-badge.pub { background:var(--pop); color:#fff; }
 .role-divider-badge.plan { background:var(--plan); color:#fff; }
 .role-divider-badge.dev { background:var(--dev); color:#fff; }
@@ -187,7 +187,7 @@ nav {
 
 /* FOOTER */
 footer { border-top:1px solid var(--line2); padding:2rem 3rem; display:flex; justify-content:space-between; align-items:center; }
-footer p { font-family:'Syne Mono',monospace; font-size:.68rem; color:var(--ink3); letter-spacing:.06em; }
+footer p { font-family:'Roboto Mono',monospace; font-size:.68rem; color:var(--ink3); letter-spacing:.06em; }
 
 @media (max-width:900px) {
   nav { padding:1rem 1.5rem; }
@@ -212,7 +212,7 @@ footer p { font-family:'Syne Mono',monospace; font-size:.68rem; color:var(--ink3
 <div class="cursor-ring" id="cr"></div>
 
 <nav>
-  <div class="nav-logo">PORTFOLIO<span class="dot">.</span></div>
+  <div class="nav-logo">THINK <span class="dot">&</span> BUILD</div>
   <ul class="nav-links">
     <li><a href="#skills">Skills</a></li>
     <li><a href="#planning">기획</a></li>
@@ -226,9 +226,9 @@ footer p { font-family:'Syne Mono',monospace; font-size:.68rem; color:var(--ink3
   <div>
     <p class="header-label">Web Publisher &amp; Planner · Career Portfolio</p>
     <h1 class="header-title">
-      Web
-      <span class="accent">Publisher</span>
-      <span class="accent2">&amp; Planner</span>
+      Think
+      <span class="accent">&amp;</span>
+      <span class="accent2">Build</span>
     </h1>
     <div class="role-badges">
       <span class="badge badge-pub"><span class="badge-dot"></span>웹 퍼블리싱</span>
@@ -507,7 +507,7 @@ footer p { font-family:'Syne Mono',monospace; font-size:.68rem; color:var(--ink3
              onerror="this.style.display='none'; this.parentElement.querySelector('.thumb-fallback').style.display='flex';">
         <div class="thumb-fallback" style="display:none; background:#e8f0e8; color:#4a7a4a; flex-direction:column; gap:.5rem;">
           <span style="font-size:1.8rem;">C³BIRD</span>
-          <span style="font-size:.65rem; font-family:'Syne Mono',monospace; color:#7aaa7a; letter-spacing:.1em;">감염병 국제 공동연구</span>
+          <span style="font-size:.65rem; font-family:'Roboto Mono',monospace; color:#7aaa7a; letter-spacing:.1em;">감염병 국제 공동연구</span>
         </div>
       </div>
       <div class="project-body">
@@ -715,7 +715,7 @@ footer p { font-family:'Syne Mono',monospace; font-size:.68rem; color:var(--ink3
 </section>
 
 <footer>
-  <p>WEB PUBLISHER &amp; PLANNER PORTFOLIO</p>
+  <p>THINK &amp; BUILD · PORTFOLIO</p>
   <p>© 2025 · ALL RIGHTS RESERVED</p>
 </footer>
 
